@@ -1,0 +1,80 @@
+﻿@using Bilijar.ViewModels
+@model ReservationViewModel
+@{
+    ViewBag.Title = "Home Page";
+    string minStartDate = DateTime.Now.AddHours(1).ToString("yyyy-MM-dd'T'HH:mm");
+}
+
+<div id="make-reservation" class="col-md-12">
+    @using (Html.BeginForm("MakeReservation", "Home", FormMethod.Post, new { @class = "col-md-12" }))
+    {
+        <div id="tables" class="col-md-6">
+            @if (ViewBag.Tables != null && ViewBag.Tables.Count > 0)
+            {
+                foreach (var table in ViewBag.Tables)
+                {
+                    <div class="table-div">
+                        <input type="radio" name="TableId" id="table-@table.Id" class="table-input" value="@table.Id">
+                        <label class="table-info" for="table-@table.Id">
+                            <span class="table-name">@table.Name</span>
+                            <span class="table-price">@table.Price&euro; / Hour</span>
+                            <span class="table-desc">@table.Description</span>
+                        </label>
+                    </div>
+                }
+            }
+        </div>
+        <div id="details" class="col-md-6">
+            <!-- Start Date -->
+            <div class="form-group">
+                @Html.LabelFor(m => m.StartDate)
+                @Html.TextBoxFor(m => m.StartDate,
+                new
+                     {
+                    @class = "form-control start-date",
+                    @type = "datetime-local",
+                    min = minStartDate
+                })
+                @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- End Date -->
+            <div class="form-group">
+                @Html.LabelFor(m => m.EndDate)
+                @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control end-date", @type = "datetime-local", min = minStartDate })
+                @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Comment -->
+            <div class="form-group">
+                @Html.LabelFor(m => m.Comment)
+                @Html.TextAreaFor(m => m.Comment, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Comment, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-make col-md-12" value="Make reservation" />
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script>
+        $(document).on("change", ".start-date", function () {
+            $(".end-date").attr("min", $(this).val());
+        })
+    </script>
+
+    <script>
+        $(document).on("change", "input:radio[name=TableId]", function () {
+            $(this).parent().siblings().removeClass("active");
+            $(this).parent().addClass("active");
+        });
+
+        //$(document).ready(function () {
+        //    $(".table-div").first().children(".table-input").prop("checked", true);
+        //    $(".table-div").first().addClass("active");
+        //})
+    </script>
+}

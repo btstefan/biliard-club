@@ -1,0 +1,55 @@
+﻿@using Bilijar.Models
+@model List<Reservation>
+@{
+    ViewBag.Title = "Reservations";
+}
+
+<h2>Reservations</h2>
+
+<div id="reservations">
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Created</th>
+                    <th scope="col">Table name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">User email</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Total price</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody id="reservation-list">
+                @foreach (var reservation in Model)
+                {
+                    <tr class="reservation" reservation-id="@reservation.Id">
+                        <td>@reservation.Created.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@reservation.Table.Name</td>
+                        <td class="status-id">@reservation.ReservationStatus.Name</td>
+                        <td>@reservation.User.Email</td>
+                        <td>@reservation.StartDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@reservation.EndDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@reservation.TotalPrice.ToString("N1") &euro;</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary change-status" status-id="2">Accept</button>
+                            <button class="btn btn-sm btn-danger change-status" status-id="3">Decline</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="col-md-12 center-block text-center">No reservations</p>
+    }
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+    <script src="/signalr/js"></script>
+    <script src="~/Scripts/employee.js"></script>
+}

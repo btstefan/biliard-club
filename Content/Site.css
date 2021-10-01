@@ -1,0 +1,92 @@
+﻿body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background: #000;
+  color: #b5b5b5;
+  background: url("Images/background.jpg") no-repeat center top fixed;
+  background-size: cover;
+  min-height: 100vh; }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal; }
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+  max-width: 280px; }
+
+.col-md-12 {
+  padding: 0; }
+
+#make-reservation {
+  margin-top: 40px; }
+
+.table-div {
+  position: relative;
+  border: 1px solid #e0e0e0;
+  background: #222222;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 4px solid transparent; }
+  .table-div .table-input {
+    opacity: 0;
+    visibility: hidden;
+    display: none; }
+  .table-div .table-info {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    margin: 0; }
+    .table-div .table-info .table-name {
+      font-size: 2rem; }
+    .table-div .table-info .table-price {
+      float: right;
+      color: #aaaaaa;
+      font-size: 1.2rem; }
+    .table-div .table-info .table-desc {
+      display: block;
+      width: 100%;
+      font-size: 1rem; }
+
+.form-group .form-control {
+  max-width: 100%;
+  background: #222222;
+  border: none;
+  color: #b4b4b4; }
+
+.active {
+  border-color: #349bff; }
+
+.btn-make {
+  background: #14426f;
+  max-width: 100%;
+  height: 4rem;
+  color: #b4b4b4; }
+  .btn-make:hover {
+    background: #349bff;
+    color: #282828; }
+
+label {
+  color: #b4b4b4; }
+
+.table tr {
+  border-top: 1px solid #373737; }
+  .table tr td, .table tr th {
+    border: none !important; }
+
+h2 {
+  margin-bottom: 40px; }
