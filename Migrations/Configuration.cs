@@ -40,7 +40,7 @@ namespace Bilijar.Migrations
             context.ReservationStatuses.AddOrUpdate(m => m.Id,
                 new ReservationStatus { Id = 1, Name = "Open", BlockReservation = false },
                 new ReservationStatus { Id = 2, Name = "Accepted", BlockReservation = true },
-                new ReservationStatus { Id = 2, Name = "Declined", BlockReservation = false }
+                new ReservationStatus { Id = 3, Name = "Declined", BlockReservation = false }
             );
 
             // tables
